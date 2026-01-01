@@ -1,50 +1,146 @@
-# Welcome to your Expo app 👋
+# TV6 Live Stream App - Setup Instructions
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📦 Installation Steps
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 1. Install Required Package
+First, install the video player package:
 
 ```bash
-npm run reset-project
+npx expo install expo-av
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. File Structure
+Create the following file in your project:
 
-## Learn more
+```
+app/
+  ├── (tabs)/
+  │   ├── index.tsx (already updated)
+  │   ├── about.tsx (already updated)
+  │   ├── contact.tsx (already updated)
+  │   └── _layout.tsx
+  ├── _layout.tsx (update with new version)
+  └── player.tsx (NEW - create this file)
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 3. Create the Player Screen
+Create a new file `app/player.tsx` and paste the video player code.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 4. Update Root Layout
+Replace your `app/_layout.tsx` with the updated version that includes the player route.
 
-## Join the community
+## 🎯 Features Implemented
 
-Join our community of developers creating universal apps.
+### ✅ Home Screen
+- Beautiful hero design with logo
+- "Watch Live TV" button that opens the video player
+- Live indicator badge
+- Viewer count display (placeholder)
+- Feature cards
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### ✅ Video Player
+- Full-screen HLS video streaming
+- Custom controls overlay
+- Play/Pause functionality
+- Live indicator
+- Viewer count badge
+- Loading state
+- Error handling with retry
+- Back button to return home
+- Auto-hide controls after 3 seconds
+
+### ✅ About Us Page
+- Company mission and story
+- Feature highlights
+- Statistics display
+
+### ✅ Contact Page
+- Clickable contact methods (email, phone, website)
+- Support hours
+- FAQ section
+- Social media links
+
+## 🔧 Configuration Needed
+
+### 1. Update Contact Information
+In `app/(tabs)/contact.tsx`, replace:
+- `support@tv6.com` with your real email
+- `+233 000 000 000` with your real phone number
+- Social media links
+
+### 2. Connect Visitor Counter (Next Step)
+The viewer count is currently a placeholder. You'll need to:
+- Set up a backend service (Firebase, Supabase, or custom API)
+- Implement real-time viewer tracking
+- Update the count in both home screen and player
+
+## 🚀 Testing
+
+### Test on Development:
+```bash
+# Start the development server
+npm start
+
+# Then press:
+# - 'a' for Android
+# - 'i' for iOS
+# - 'w' for web
+```
+
+### Test the Video Stream:
+1. Open the app
+2. Tap "Watch Live TV" button
+3. Video should start playing automatically
+4. Tap screen to show/hide controls
+5. Test play/pause functionality
+6. Test back button
+
+## 📱 Before Play Store/App Store Deployment
+
+### 1. Update App Configuration
+In `app.json`:
+- Change app name from "tv6" to your preferred name
+- Update version numbers
+- Add proper app icons and splash screens
+
+### 2. Build for Production
+
+**Android (Google Play Store):**
+```bash
+eas build --platform android
+```
+
+**iOS (Apple App Store):**
+```bash
+eas build --platform ios
+```
+
+### 3. Required Accounts
+- **Google Play Console** account ($25 one-time fee)
+- **Apple Developer** account ($99/year)
+- **Expo EAS** account (free tier available)
+
+## 🔮 Next Steps
+
+1. **Implement Real Visitor Counter** ✨
+2. Add analytics tracking
+3. Implement push notifications
+4. Add video quality settings
+5. Add fullscreen rotation support
+6. Implement replay/rewind features (if not live-only)
+7. Add sharing functionality
+8. Implement user authentication (if needed)
+
+## 📞 Support
+If you encounter any issues, check:
+- Expo documentation: https://docs.expo.dev
+- React Native documentation: https://reactnative.dev
+- Stack Overflow for specific errors
+
+## 🎉 Current Status
+✅ UI Design Complete
+✅ Video Player Integrated
+✅ Navigation Working
+⏳ Visitor Counter (Next Priority)
+⏳ Production Build
+⏳ Store Deployment

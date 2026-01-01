@@ -1,98 +1,218 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
+//import { Image } from 'expo-image';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from '@/constants/theme';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { router } from 'expo-router';
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+  const handleWatchLive = () => {
+    //navigate to the player.tsx in apps 
+    router.push('/player');
+  };
+
+  return (
+    <ThemedView style={styles.container}>
+      {/* Hero Section */}
+      <View style={styles.heroSection}>
+        <View style={styles.logoContainer}>
+          <View style={[styles.logoCircle, { backgroundColor: isDark ? '#1a1a2e' : '#f0f4ff' }]}>
+            <IconSymbol 
+              name="paperplane.fill" 
+              size={60} 
+              color={Colors[colorScheme ?? 'light'].tint} 
+            />
+          </View>
+        </View>
+
+        <ThemedText style={styles.title}>TV6 Live Stream</ThemedText>
+        <ThemedText style={styles.subtitle}>
+          Watch your favorite shows live, anytime, anywhere
         </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+        {/* Live Indicator */}
+        <View style={styles.liveIndicator}>
+          <View style={styles.liveDot} />
+          <ThemedText style={styles.liveText}>LIVE NOW</ThemedText>
+        </View>
+
+        {/* Watch Button */}
+        <TouchableOpacity 
+          style={[styles.watchButton, { backgroundColor: Colors[colorScheme ?? 'light'].tint }]}
+          onPress={handleWatchLive}
+          activeOpacity={0.8}
+        >
+          <IconSymbol name="paperplane.fill" size={24} color="#fff" />
+          <ThemedText style={styles.watchButtonText}>Watch Live TV</ThemedText>
+        </TouchableOpacity>
+
+        {/* Stats Section */}
+        <View style={styles.statsContainer}>
+          <View style={styles.statBox}>
+            <ThemedText style={styles.statNumber}>1,234</ThemedText>
+            <ThemedText style={styles.statLabel}>Watching Now</ThemedText>
+          </View>
+          <View style={[styles.statDivider, { backgroundColor: isDark ? '#333' : '#e0e0e0' }]} />
+          <View style={styles.statBox}>
+            <ThemedText style={styles.statNumber}>24/7</ThemedText>
+            <ThemedText style={styles.statLabel}>Always Live</ThemedText>
+          </View>
+        </View>
+      </View>
+
+      {/* Features Section */}
+      <View style={styles.featuresSection}>
+        <ThemedText style={styles.sectionTitle}>Features</ThemedText>
+        
+        <View style={styles.featureGrid}>
+          <View style={[styles.featureCard, { backgroundColor: isDark ? '#1a1a2e' : '#f8f9ff' }]}>
+            <IconSymbol name="paperplane.fill" size={32} color={Colors[colorScheme ?? 'light'].tint} />
+            <ThemedText style={styles.featureTitle}>HD Quality</ThemedText>
+            <ThemedText style={styles.featureDesc}>Crystal clear streaming</ThemedText>
+          </View>
+
+          <View style={[styles.featureCard, { backgroundColor: isDark ? '#1a1a2e' : '#f8f9ff' }]}>
+            <IconSymbol name="house.fill" size={32} color={Colors[colorScheme ?? 'light'].tint} />
+            <ThemedText style={styles.featureTitle}>24/7 Access</ThemedText>
+            <ThemedText style={styles.featureDesc}>Watch anytime</ThemedText>
+          </View>
+        </View>
+      </View>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+  },
+  heroSection: {
+    padding: 24,
+    alignItems: 'center',
+    paddingTop: 60,
+  },
+  logoContainer: {
+    marginBottom: 24,
+  },
+  logoCircle: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 5,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    textAlign: 'center',
+    opacity: 0.7,
+    marginBottom: 24,
+    paddingHorizontal: 32,
+  },
+  liveIndicator: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#ff4444',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    marginBottom: 24,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  liveDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#fff',
+    marginRight: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  liveText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  watchButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    borderRadius: 30,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+    marginBottom: 32,
+  },
+  watchButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
+    marginLeft: 12,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: 300,
+  },
+  statBox: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  statNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  statLabel: {
+    fontSize: 12,
+    opacity: 0.6,
+  },
+  statDivider: {
+    width: 1,
+    height: 40,
+  },
+  featuresSection: {
+    padding: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  featureGrid: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  featureCard: {
+    flex: 1,
+    padding: 20,
+    borderRadius: 16,
+    alignItems: 'center',
+  },
+  featureTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 12,
+    marginBottom: 4,
+  },
+  featureDesc: {
+    fontSize: 12,
+    opacity: 0.6,
+    textAlign: 'center',
   },
 });
