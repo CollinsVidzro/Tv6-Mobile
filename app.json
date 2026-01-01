@@ -38,6 +38,19 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": true,
+          "supportsPictureInPicture": true
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow TV6 Ghana to access your microphone."
+        }
       ]
     ],
     "experiments": {

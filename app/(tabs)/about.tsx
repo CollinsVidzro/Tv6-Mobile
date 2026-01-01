@@ -1,206 +1,520 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
+import { HugeiconsIcon } from "@hugeicons/react-native";
+import {
+  InformationCircleIcon,
+  PlayCircleIcon,
+  MusicNote02Icon,
+  Film01Icon,
+  Mic01Icon,
+  UserMultiple02Icon,
+  FavouriteCircleIcon,
+  Clock01Icon,
+  Globe02Icon,
+  Award01Icon,
+  Home01Icon,
+  StarIcon,
+  VideoIcon,
+  LaughingIcon,
+  ChatIcon,
+  ArrowLeft02Icon,
+} from "@hugeicons/core-free-icons";
+import { useNavigation } from "expo-router";
 
 export default function AboutScreen() {
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const navigation = useNavigation();
 
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <ThemedView style={styles.container}>
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={[styles.iconContainer, { backgroundColor: isDark ? '#1a1a2e' : '#f0f4ff' }]}>
-            <IconSymbol 
-              name="info.circle.fill" 
-              size={50} 
-              color={Colors[colorScheme ?? 'light'].tint} 
-            />
-          </View>
-          <ThemedText style={styles.title}>About TV6</ThemedText>
-          <ThemedText style={styles.subtitle}>
-            Your trusted source for live entertainment
-          </ThemedText>
-        </View>
+    <View style={{ flex: 1 }}>
+      {/* Custom Header */}
+      <View style={[styles.header, { backgroundColor: "#246fb5" }]}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.backButton}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <HugeiconsIcon icon={ArrowLeft02Icon} size={24} color="#fff" />
+        </TouchableOpacity>
+        <ThemedText style={styles.headerTitle}>About TV6 Ghana</ThemedText>
+        <View style={{ width: 40 }} /> {/* Spacer for alignment */}
+      </View>
 
-        {/* Mission Section */}
-        <View style={[styles.section, { backgroundColor: isDark ? '#1a1a2e' : '#f8f9ff' }]}>
-          <ThemedText style={styles.sectionTitle}>Our Mission</ThemedText>
-          <ThemedText style={styles.paragraph}>
-            TV6 is dedicated to bringing quality live streaming content to viewers around the world. 
-            We believe in the power of live television to connect, inform, and entertain audiences 
-            everywhere, anytime.
-          </ThemedText>
-        </View>
-
-        {/* What We Offer */}
-        <View style={styles.section}>
-          <ThemedText style={styles.sectionTitle}>What We Offer</ThemedText>
-          
-          <View style={styles.offerItem}>
-            <View style={[styles.offerIcon, { backgroundColor: Colors[colorScheme ?? 'light'].tint }]}>
-              <IconSymbol name="paperplane.fill" size={20} color="#fff" />
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+        <ThemedView style={styles.container}>
+          {/* Header Icon */}
+          <View style={styles.headerSection}>
+            <View style={styles.iconContainer}>
+              <HugeiconsIcon
+                icon={InformationCircleIcon}
+                size={60}
+                color="#246fb5"
+              />
             </View>
-            <View style={styles.offerContent}>
-              <ThemedText style={styles.offerTitle}>24/7 Live Streaming</ThemedText>
-              <ThemedText style={styles.offerDesc}>
-                Continuous broadcasting with no interruptions
+            <ThemedText style={styles.subtitle}>
+              Capturing the soul of Ghanaian entertainment
+            </ThemedText>
+          </View>
+
+          {/* Hero Description */}
+          <View style={styles.heroSection}>
+            <View style={styles.quoteIcon}>
+              <HugeiconsIcon
+                icon={FavouriteCircleIcon}
+                size={24}
+                color="#246fb5"
+              />
+            </View>
+            <ThemedText style={styles.heroText}>
+              TV6 brings you non-stop excitement with a rich blend of Films,
+              Music Videos, Dramas, Funny Skits, and Talk Shows — all crafted
+              with the true Ghanaian spirit at heart. From laughter to
+              inspiration, from culture to creativity, TV6 captures the soul of
+              Ghanaian entertainment like no other.
+            </ThemedText>
+            <ThemedText style={styles.heroConclusion}>
+              Tune in and feel at home — because TV6 is made for you, by you!
+            </ThemedText>
+          </View>
+
+          {/* What We Offer */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <HugeiconsIcon icon={StarIcon} size={28} color="#246fb5" />
+              <ThemedText style={styles.sectionTitle}>
+                What We Bring You
+              </ThemedText>
+            </View>
+
+            <View style={styles.offerGrid}>
+              <View style={styles.offerCard}>
+                <View
+                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                >
+                  <HugeiconsIcon icon={Film01Icon} size={28} color="#fff" />
+                </View>
+                <ThemedText style={styles.offerTitle}>Films</ThemedText>
+                <ThemedText style={styles.offerDesc}>
+                  Latest Ghanaian movies
+                </ThemedText>
+              </View>
+
+              <View style={styles.offerCard}>
+                <View
+                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                >
+                  <HugeiconsIcon
+                    icon={MusicNote02Icon}
+                    size={28}
+                    color="#fff"
+                  />
+                </View>
+                <ThemedText style={styles.offerTitle}>Music Videos</ThemedText>
+                <ThemedText style={styles.offerDesc}>
+                  Top Ghanaian hits
+                </ThemedText>
+              </View>
+
+              <View style={styles.offerCard}>
+                <View
+                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                >
+                  <HugeiconsIcon icon={VideoIcon} size={28} color="#fff" />
+                </View>
+                <ThemedText style={styles.offerTitle}>Dramas</ThemedText>
+                <ThemedText style={styles.offerDesc}>
+                  Compelling stories
+                </ThemedText>
+              </View>
+
+              <View style={styles.offerCard}>
+                <View
+                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                >
+                  <HugeiconsIcon icon={LaughingIcon} size={28} color="#fff" />
+                </View>
+                <ThemedText style={styles.offerTitle}>Funny Skits</ThemedText>
+                <ThemedText style={styles.offerDesc}>
+                  Comedy and laughter
+                </ThemedText>
+              </View>
+
+              <View style={styles.offerCard}>
+                <View
+                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                >
+                  <HugeiconsIcon icon={Mic01Icon} size={28} color="#fff" />
+                </View>
+                <ThemedText style={styles.offerTitle}>Talk Shows</ThemedText>
+                <ThemedText style={styles.offerDesc}>
+                  Engaging discussions
+                </ThemedText>
+              </View>
+
+              <View style={styles.offerCard}>
+                <View
+                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                >
+                  <HugeiconsIcon icon={ChatIcon} size={28} color="#fff" />
+                </View>
+                <ThemedText style={styles.offerTitle}>Live Events</ThemedText>
+                <ThemedText style={styles.offerDesc}>
+                  Real-time broadcasts
+                </ThemedText>
+              </View>
+            </View>
+          </View>
+
+          {/* Our Values */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <HugeiconsIcon
+                icon={FavouriteCircleIcon}
+                size={28}
+                color="#246fb5"
+              />
+              <ThemedText style={styles.sectionTitle}>
+                Our Ghanaian Spirit
               </ThemedText>
             </View>
           </View>
 
-          <View style={styles.offerItem}>
-            <View style={[styles.offerIcon, { backgroundColor: Colors[colorScheme ?? 'light'].tint }]}>
-              <IconSymbol name="house.fill" size={20} color="#fff" />
-            </View>
-            <View style={styles.offerContent}>
-              <ThemedText style={styles.offerTitle}>HD Quality</ThemedText>
-              <ThemedText style={styles.offerDesc}>
-                Crystal clear video streaming in high definition
+          <View style={styles.valuesContainer}>
+            <View style={styles.valueItem}>
+              <View style={[styles.valueIcon, { backgroundColor: "#f0f4ff" }]}>
+                <HugeiconsIcon icon={Home01Icon} size={24} color="#246fb5" />
+              </View>
+              <ThemedText style={styles.valueTitle}>Authentic</ThemedText>
+              <ThemedText style={styles.valueDesc}>
+                True Ghanaian content
               </ThemedText>
             </View>
-          </View>
 
-          <View style={styles.offerItem}>
-            <View style={[styles.offerIcon, { backgroundColor: Colors[colorScheme ?? 'light'].tint }]}>
-              <IconSymbol name="phone.fill" size={20} color="#fff" />
-            </View>
-            <View style={styles.offerContent}>
-              <ThemedText style={styles.offerTitle}>Multi-Platform</ThemedText>
-              <ThemedText style={styles.offerDesc}>
-                Watch on mobile, tablet, or any device
+            <View style={styles.valueItem}>
+              <View style={[styles.valueIcon, { backgroundColor: "#f0f4ff" }]}>
+                <HugeiconsIcon
+                  icon={UserMultiple02Icon}
+                  size={24}
+                  color="#246fb5"
+                />
+              </View>
+              <ThemedText style={styles.valueTitle}>Community</ThemedText>
+              <ThemedText style={styles.valueDesc}>
+                Made for you, by you
               </ThemedText>
             </View>
-          </View>
-        </View>
 
-        {/* Our Story */}
-        <View style={[styles.section, { backgroundColor: isDark ? '#1a1a2e' : '#f8f9ff' }]}>
-          <ThemedText style={styles.sectionTitle}>Our Story</ThemedText>
-          <ThemedText style={styles.paragraph}>
-            Founded with a vision to revolutionize live streaming, TV6 has grown to become 
-            a trusted platform for thousands of viewers. We&apos;re committed to delivering the 
-            best viewing experience with cutting-edge technology and reliable service.
-          </ThemedText>
-          <ThemedText style={styles.paragraph}>
-            Our team works tirelessly to ensure that every broadcast meets the highest 
-            standards of quality and reliability. We&apos;re more than just a streaming service 
-            – we&apos;re your gateway to entertainment.
-          </ThemedText>
-        </View>
+            <View style={styles.valueItem}>
+              <View style={[styles.valueIcon, { backgroundColor: "#f0f4ff" }]}>
+                <HugeiconsIcon icon={Globe02Icon} size={24} color="#246fb5" />
+              </View>
+              <ThemedText style={styles.valueTitle}>Cultural</ThemedText>
+              <ThemedText style={styles.valueDesc}>
+                Ghanaian heritage
+              </ThemedText>
+            </View>
 
-        {/* Stats */}
-        <View style={styles.statsGrid}>
-          <View style={[styles.statCard, { backgroundColor: isDark ? '#1a1a2e' : '#f8f9ff' }]}>
-            <ThemedText style={styles.statNumber}>10K+</ThemedText>
-            <ThemedText style={styles.statLabel}>Active Users</ThemedText>
+            <View style={styles.valueItem}>
+              <View style={[styles.valueIcon, { backgroundColor: "#f0f4ff" }]}>
+                <HugeiconsIcon icon={Award01Icon} size={24} color="#246fb5" />
+              </View>
+              <ThemedText style={styles.valueTitle}>Quality</ThemedText>
+              <ThemedText style={styles.valueDesc}>Premium content</ThemedText>
+            </View>
           </View>
-          <View style={[styles.statCard, { backgroundColor: isDark ? '#1a1a2e' : '#f8f9ff' }]}>
-            <ThemedText style={styles.statNumber}>24/7</ThemedText>
-            <ThemedText style={styles.statLabel}>Availability</ThemedText>
+
+          {/* Stats */}
+          <View style={styles.statsSection}>
+            <ThemedText style={styles.statsTitle}>Why Choose TV6</ThemedText>
+
+            <View style={styles.statsGrid}>
+              <View style={styles.statCard}>
+                <HugeiconsIcon icon={Clock01Icon} size={32} color="#246fb5" />
+                <ThemedText style={styles.statNumber}>24/7</ThemedText>
+                <ThemedText style={styles.statLabel}>Non-Stop</ThemedText>
+              </View>
+
+              <View style={styles.statCard}>
+                <HugeiconsIcon
+                  icon={PlayCircleIcon}
+                  size={32}
+                  color="#246fb5"
+                />
+                <ThemedText style={styles.statNumber}>HD</ThemedText>
+                <ThemedText style={styles.statLabel}>Quality</ThemedText>
+              </View>
+
+              <View style={styles.statCard}>
+                <HugeiconsIcon
+                  icon={UserMultiple02Icon}
+                  size={32}
+                  color="#246fb5"
+                />
+                <ThemedText style={styles.statNumber}>For You</ThemedText>
+                <ThemedText style={styles.statLabel}>Community</ThemedText>
+              </View>
+            </View>
           </View>
-          <View style={[styles.statCard, { backgroundColor: isDark ? '#1a1a2e' : '#f8f9ff' }]}>
-            <ThemedText style={styles.statNumber}>HD</ThemedText>
-            <ThemedText style={styles.statLabel}>Quality</ThemedText>
+
+          {/* Final CTA */}
+          <View style={styles.ctaSection}>
+            <View style={styles.ctaIcon}>
+              <HugeiconsIcon
+                icon={FavouriteCircleIcon}
+                size={40}
+                color="#246fb5"
+              />
+            </View>
+            <ThemedText style={styles.ctaText}>
+              Experience the true spirit of Ghanaian entertainment
+            </ThemedText>
           </View>
-        </View>
-      </ThemedView>
-    </ScrollView>
+        </ThemedView>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
+    paddingTop: Platform.OS === "ios" ? 50 : 40,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#1d5a9c",
+    zIndex: 100,
+  },
+  backButton: {
+    padding: 8,
+    borderRadius: 8,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#fff",
+  },
   container: {
     flex: 1,
-    padding: 24,
-    paddingTop: 60,
+    padding: 20,
+    paddingTop: 20,
+    backgroundColor: "#fff",
   },
-  header: {
-    alignItems: 'center',
+  headerSection: {
+    alignItems: "center",
     marginBottom: 32,
+    marginTop: 10,
   },
   iconContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 8,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    backgroundColor: "#f0f4ff",
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
   },
   subtitle: {
     fontSize: 16,
-    opacity: 0.7,
-    textAlign: 'center',
+    color: "#666",
+    textAlign: "center",
+    lineHeight: 22,
+  },
+  heroSection: {
+    backgroundColor: "#f8f9ff",
+    padding: 24,
+    borderRadius: 16,
+    marginBottom: 32,
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
+  },
+  quoteIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
+  },
+  heroText: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: "#333",
+    marginBottom: 16,
+  },
+  heroConclusion: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#246fb5",
+    fontStyle: "italic",
+    textAlign: "center",
+    lineHeight: 24,
   },
   section: {
+    marginBottom: 32,
+  },
+  sectionHeader: {
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 24,
-    padding: 20,
-    borderRadius: 16,
+    gap: 12,
   },
   sectionTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 12,
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333",
   },
-  paragraph: {
-    fontSize: 15,
-    lineHeight: 24,
-    opacity: 0.8,
-    marginBottom: 12,
+  offerGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
   },
-  offerItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
+  offerCard: {
+    width: "48%",
+    backgroundColor: "#f8f9ff",
+    padding: 16,
+    borderRadius: 16,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
+    marginBottom: 12,
   },
   offerIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  offerContent: {
-    flex: 1,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 12,
   },
   offerTitle: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
+    color: "#333",
     marginBottom: 4,
+    textAlign: "center",
   },
   offerDesc: {
-    fontSize: 14,
-    opacity: 0.6,
+    fontSize: 13,
+    color: "#666",
+    textAlign: "center",
+    lineHeight: 18,
+  },
+  valuesContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+  },
+  valueItem: {
+    width: "48%",
+    backgroundColor: "#f8f9ff",
+    padding: 16,
+    borderRadius: 16,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
+    marginBottom: 12,
+  },
+  valueIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  valueTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: 4,
+    textAlign: "center",
+  },
+  valueDesc: {
+    fontSize: 13,
+    color: "#666",
+    textAlign: "center",
+    lineHeight: 18,
+  },
+  statsSection: {
+    backgroundColor: "#f8f9ff",
+    padding: 24,
+    borderRadius: 16,
+    marginBottom: 32,
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
+  },
+  statsTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 24,
+    textAlign: "center",
   },
   statsGrid: {
-    flexDirection: 'row',
+    flexDirection: "row",
+    justifyContent: "space-between",
     gap: 12,
-    marginTop: 8,
   },
   statCard: {
     flex: 1,
-    padding: 20,
+    alignItems: "center",
+    padding: 16,
+    backgroundColor: "#fff",
     borderRadius: 16,
-    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
   },
   statNumber: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#333",
+    marginTop: 8,
     marginBottom: 4,
   },
   statLabel: {
-    fontSize: 12,
-    opacity: 0.6,
-    textAlign: 'center',
+    fontSize: 14,
+    color: "#666",
+    textAlign: "center",
+  },
+  ctaSection: {
+    backgroundColor: "#f0f4ff",
+    padding: 24,
+    borderRadius: 16,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
+  },
+  ctaIcon: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: "#e6e9ff",
+  },
+  ctaText: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#246fb5",
+    textAlign: "center",
+    lineHeight: 24,
   },
 });
