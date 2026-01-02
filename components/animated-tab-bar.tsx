@@ -13,11 +13,11 @@ import { ThemedText } from '@/components/themed-text';
 const { width } = Dimensions.get('window');
 const TAB_WIDTH = width / 3;
 
-export function AnimatedTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const translateValue = useRef(new Animated.Value(0)).current;
 
   const tabIcons = [
-    { id: 'home', icon: Home01Icon },
+    { id: 'index', icon: Home01Icon },
     { id: 'about', icon: InformationCircleIcon },
     { id: 'contact', icon: Call02Icon },
   ];
