@@ -3,16 +3,17 @@ import { StatusBar } from "expo-status-bar";
 import VideoPlayer from "@/components/VideoPlayer";
 import { StyleSheet, TouchableOpacity, View, Platform } from "react-native";
 import { commonStyles } from "@/styles/commonStyles";
-import { useLocalSearchParams, router } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { ThemedText } from "@/components/themed-text";
 import { HugeiconsIcon } from "@hugeicons/react-native";
 import { ArrowLeft02Icon } from "@hugeicons/core-free-icons";
-import { useState, useEffect } from "react";
-import * as ScreenOrientation from 'expo-screen-orientation';
+import { useEffect } from "react";
+import * as ScreenOrientation from "expo-screen-orientation";
+import { useNavigation } from "@react-navigation/native";
 
 export default function VideoPlayerScreen() {
   const params = useLocalSearchParams();
-  const [isFullscreen] = useState(false);
+  const navigation = useNavigation();
 
   // Parse the item from params
   const item = params.item
@@ -20,53 +21,47 @@ export default function VideoPlayerScreen() {
     : {
         stream_url:
           "https://tv6.streamhubafrica.com/memfs/8de922ea-1c70-4f89-8c6a-510a245da2c8.m3u8",
-        thumbnail_url: undefined,
+        thumbnail_url: "../assets/images/tv6-logo.png",
       };
 
   // Lock orientation to portrait when component mounts
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-    
+
     return () => {
       // Reset orientation when component unmounts
-      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+      ScreenOrientation.lockAsync(
+        ScreenOrientation.OrientationLock.PORTRAIT_UP
+      );
     };
   }, []);
 
-  const handleBack = () => {
-    router.back();
-  };
-
   return (
-    <ThemedView style={commonStyles.containerBlack}>
+    <View style={{ flex: 1 }}>
+      {/* Custom Header */}
+      <View style={[styles.header, { backgroundColor: "#246fb5" }]}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.backButton}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <HugeiconsIcon icon={ArrowLeft02Icon} size={24} color="#fff" />
+        </TouchableOpacity>
+        <ThemedText style={styles.headerTitle}>TV6 Ghana</ThemedText>
+        <View style={{ width: 40 }} />
+      </View>
+
       <StatusBar 
         style="light" 
         backgroundColor="#246fb5"
-        hidden={isFullscreen}
       />
 
-      {/* Custom Header - Hide in fullscreen */}
-      {!isFullscreen && (
-        <View style={[styles.header, { backgroundColor: "#246fb5" }]}>
-          <TouchableOpacity
-            onPress={handleBack}
-            style={styles.backButton}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <HugeiconsIcon icon={ArrowLeft02Icon} size={24} color="#fff" />
-          </TouchableOpacity>
-          <ThemedText style={styles.headerTitle}>TV6 Ghana</ThemedText>
-          <View style={{ width: 40 }} /> {/* Spacer for alignment */}
-        </View>
-      )}
-
-      <View style={[
-        commonStyles.containerBlack,
-        isFullscreen && styles.fullscreenContainer
-      ]}>
-        <VideoPlayer item={item} />
+      <View style={{ flex: 1 }}>
+        <ThemedView style={commonStyles.containerBlack}>
+          <VideoPlayer item={item} />
+        </ThemedView>
       </View>
-    </ThemedView>
+    </View>
   );
 }
 
@@ -78,6 +73,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: Platform.OS === "ios" ? 50 : 40,
     paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#1d5a9c",
     zIndex: 100,
   },
   backButton: {
@@ -89,13 +86,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     color: "#fff",
-  },
-  fullscreenContainer: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1000,
   },
 });

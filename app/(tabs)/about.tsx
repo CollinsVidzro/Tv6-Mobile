@@ -10,13 +10,13 @@ import { ThemedView } from "@/components/themed-view";
 import { HugeiconsIcon } from "@hugeicons/react-native";
 import {
   InformationCircleIcon,
-  PlayCircleIcon,
+  // PlayCircleIcon,
   MusicNote02Icon,
   Film01Icon,
   Mic01Icon,
   UserMultiple02Icon,
   FavouriteCircleIcon,
-  Clock01Icon,
+  // Clock01Icon,
   Globe02Icon,
   Award01Icon,
   Home01Icon,
@@ -43,7 +43,7 @@ export default function AboutScreen() {
           <HugeiconsIcon icon={ArrowLeft02Icon} size={24} color="#fff" />
         </TouchableOpacity>
         <ThemedText style={styles.headerTitle}>About TV6 Ghana</ThemedText>
-        <View style={{ width: 40 }} /> {/* Spacer for alignment */}
+        <View style={{ width: 40 }} />
       </View>
 
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
@@ -230,7 +230,7 @@ export default function AboutScreen() {
           </View>
 
           {/* Stats */}
-          <View style={styles.statsSection}>
+          {/* <View style={styles.statsSection}>
             <ThemedText style={styles.statsTitle}>Why Choose TV6</ThemedText>
 
             <View style={styles.statsGrid}>
@@ -260,7 +260,7 @@ export default function AboutScreen() {
                 <ThemedText style={styles.statLabel}>Community</ThemedText>
               </View>
             </View>
-          </View>
+          </View> */}
 
           {/* Final CTA */}
           <View style={styles.ctaSection}>

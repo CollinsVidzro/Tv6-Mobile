@@ -1,6 +1,11 @@
+
 import { Colors } from "@/utils/Constants";
 import { FC, useState, useEffect } from "react";
-import { View, Image, ActivityIndicator, useWindowDimensions } from "react-native";
+import {
+  View,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { RFValue } from "react-native-responsive-fontsize";
 import ScalePress from "./ui/ScalePress";
@@ -12,15 +17,17 @@ interface StreamItem {
   stream_url?: string;
 }
 
+interface VideoPlayerProps {
+  item: StreamItem;
+}
+
 const STREAM_URL =
   "https://tv6.streamhubafrica.com/memfs/8de922ea-1c70-4f89-8c6a-510a245da2c8.m3u8";
 
-const VideoPlayer: FC<{ item: StreamItem }> = ({ item }) => {
+const VideoPlayer: FC<VideoPlayerProps> = ({ item }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isBuffering, setIsBuffering] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [isFullscreen] = useState(false);
-  const { height, width } = useWindowDimensions();
 
   // Use expo-video player
   const player = useVideoPlayer(item?.stream_url || STREAM_URL, (player) => {
@@ -53,91 +60,75 @@ const VideoPlayer: FC<{ item: StreamItem }> = ({ item }) => {
     };
   }, [player]);
 
-
-  const handlePlayPress = () => {
+  const handlePlayPress = async () => {
     if (hasError) {
-      // Retry loading
-      player.replace(item?.stream_url || STREAM_URL);
-      player.play();
-      setHasError(false);
-      setIsBuffering(true);
+      // Retry loading - use replaceAsync instead of replace
+      try {
+        setIsBuffering(true);
+        setHasError(false);
+        await player.replaceAsync(item?.stream_url || STREAM_URL);
+        player.play();
+      } catch (error) {
+        console.error("Failed to load video:", error);
+        setHasError(true);
+        setIsBuffering(false);
+      }
     } else {
       player.play();
       setIsLoaded(true);
     }
   };
 
-
-  // Use full screen dimensions when in fullscreen mode
-  const videoContainerStyle = isFullscreen 
-    ? { width: width, height: height, backgroundColor: '#0000' }
-    : interactionStyles.videoContainer;
-    
-  const videoStyle = isFullscreen 
-    ? { width: width, height: height }
-    : interactionStyles.video;
-    
-  const imageOverlayStyle = isFullscreen 
-    ? { width: width, height: height, position: 'absolute' as const, zIndex: 1 }
-    : interactionStyles.imageOverlay;
-
   return (
-    <View style={videoContainerStyle}>
+    <View style={interactionStyles.videoContainer}>
       {/* Video Player */}
       <VideoView
-        style={videoStyle}
+        style={interactionStyles.video}
         player={player}
-        allowsFullscreen={true}
         nativeControls={true}
         contentFit="contain"
-        allowsPictureInPicture={true}
+        allowsPictureInPicture={false}
       />
 
       {/* Thumbnail overlay when not loaded */}
       {!isLoaded && item?.thumbnail_url && (
         <Image
           source={{ uri: item.thumbnail_url }}
-          style={imageOverlayStyle}
+          style={interactionStyles.imageOverlay}
           resizeMode="cover"
         />
       )}
 
       {/* Loading/Buffering Indicator */}
       {isBuffering && (
-        <View style={[
-          interactionStyles.loadingContainer,
-          isFullscreen && { width: width, height: height }
-        ]}>
-          <ActivityIndicator size="large" color={Colors.theme || '#fff'} />
+        <View style={interactionStyles.loadingContainer}>
+          <ActivityIndicator size="large" color={Colors.theme || "#ffffff"} />
         </View>
       )}
 
       {/* Play button overlay for thumbnail */}
       {!isLoaded && !isBuffering && !hasError && (
         <ScalePress
-          style={isFullscreen ? interactionStyles.fullPlayIcon : interactionStyles.playIcon}
+          style={interactionStyles.playIcon}
           onPress={handlePlayPress}
         >
           <Ionicons
             name="play-circle"
-            size={isFullscreen ? RFValue(60) : RFValue(40)}
-            color={Colors.theme || '#fff'}
+            size={RFValue(40)}
+            color={Colors.theme || "#ffffff"}
           />
         </ScalePress>
       )}
 
       {/* Error State */}
       {hasError && (
-        <View style={[
-          interactionStyles.errorContainer,
-          isFullscreen && { width: width, height: height }
-        ]}>
+        <View style={interactionStyles.errorContainer}>
           <Ionicons name="alert-circle" size={RFValue(40)} color="#ff4444" />
           <ScalePress
             style={interactionStyles.retryButton}
             onPress={handlePlayPress}
           >
-            <Ionicons name="refresh" size={RFValue(20)} color="#fff" />
+            <Ionicons name="refresh" size={RFValue(20)} color="#ffffff" />
           </ScalePress>
         </View>
       )}

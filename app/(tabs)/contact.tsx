@@ -53,7 +53,6 @@ export default function ContactScreen() {
   return (
     <View style={{ flex: 1 }}>
       {/* Custom Header */}
-     
       <View style={[styles.header, { backgroundColor: "#246fb5" }]}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -63,7 +62,7 @@ export default function ContactScreen() {
           <HugeiconsIcon icon={ArrowLeft02Icon} size={24} color="#fff" />
         </TouchableOpacity>
         <ThemedText style={styles.headerTitle}>Contact Us</ThemedText>
-        <View style={{ width: 40 }} /> {/* Spacer for alignment */}
+        <View style={{ width: 40 }} />
       </View>
 
       <ScrollView
@@ -244,9 +243,8 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "ios" ? 50 : 40,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
+    borderBottomColor: "#1d5a9c",
     zIndex: 100,
-    backgroundColor: "#fff",
   },
   backButton: {
     padding: 8,

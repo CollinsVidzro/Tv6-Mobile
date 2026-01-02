@@ -1,7 +1,11 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { IconSymbol } from "@/components/ui/icon-symbol";
+import { HugeiconsIcon } from "@hugeicons/react-native";
+import {
+  Tv01Icon,
+  InformationCircleIcon as InfoCircleIcon,
+} from "@hugeicons/core-free-icons";
 import { router } from "expo-router";
 
 export default function HomeScreen() {
@@ -10,7 +14,6 @@ export default function HomeScreen() {
   };
 
   const handleAbout = () => {
-    // You can add navigation to about page here
     router.push("/about");
   };
 
@@ -20,12 +23,17 @@ export default function HomeScreen() {
       <View style={styles.logoSection}>
         <View style={styles.logoContainer}>
           <View style={styles.logoCircle}>
-            <IconSymbol name="paperplane.fill" size={60} color="#0a7ea4" />
+            {/* Replace icon with TV6 logo */}
+            <Image 
+              source={require("@/assets/images/tv6-logo.png")}
+              style={styles.logoImage}
+              resizeMode="contain"
+            />
           </View>
         </View>
         <ThemedText style={styles.title}>TV6 Ghana</ThemedText>
         <ThemedText style={styles.subtitle}>
-          Watch your favorite shows live, anytime, anywhere
+          Discover the unseen
         </ThemedText>
       </View>
 
@@ -38,7 +46,11 @@ export default function HomeScreen() {
             onPress={handleWatchLive}
             activeOpacity={0.8}
           >
-            <IconSymbol name="play.fill" size={24} color="#0a7ea4" />
+            <HugeiconsIcon 
+              icon={Tv01Icon} 
+              size={24} 
+              color="#0a7ea4" 
+            />
             <ThemedText style={styles.watchButtonText}>
               Watch Live TV
             </ThemedText>
@@ -49,7 +61,11 @@ export default function HomeScreen() {
             onPress={handleAbout}
             activeOpacity={0.8}
           >
-            <IconSymbol name="info.circle.fill" size={24} color="#fff" />
+            <HugeiconsIcon 
+              icon={InfoCircleIcon} 
+              size={24} 
+              color="#fff" 
+            />
             <ThemedText style={styles.aboutButtonText}>About</ThemedText>
           </TouchableOpacity>
         </View>
@@ -66,6 +82,13 @@ export default function HomeScreen() {
             <ThemedText style={styles.statLabel}>Always Live</ThemedText>
           </View>
         </View>
+        
+        {/* Footer Text */}
+        <View style={styles.footerContainer}>
+          <ThemedText style={styles.footerText}>
+            © 2026 TV6 Ghana. All rights reserved.
+          </ThemedText>
+        </View>
       </View>
     </ThemedView>
   );
@@ -81,15 +104,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 60,
     backgroundColor: "#fff",
-    flex: 0.4, // Takes about 40% of screen
+    flex: 0.4,
   },
   logoContainer: {
     marginBottom: 24,
   },
   logoCircle: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 130,
+    height: 130,
+    borderRadius: 70,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f0f4ff",
@@ -99,27 +122,34 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 5,
   },
+  logoImage: {
+    width: 100,
+    height: 100,
+  },
   title: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: "bold",
     marginBottom: 8,
     textAlign: "center",
-    color: "#333",
+    color: "#1a1a1a",
+    letterSpacing: 0.5,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 18,
     textAlign: "center",
     color: "#666",
     marginBottom: 24,
     paddingHorizontal: 32,
+    fontStyle: "italic",
   },
   blueSection: {
-    flex: 0.6, // Takes about 60% of screen
+    flex: 0.6,
     backgroundColor: "#246fb5",
-    borderTopLeftRadius: 40, // Rounded-xl equivalent (12px in Tailwind)
-    borderTopRightRadius: 40, // Rounded-xl equivalent (12px in Tailwind)
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
     paddingTop: 40,
-    justifyContent: "center",
+    justifyContent: "space-between",
+    paddingBottom: 30,
   },
   buttonsContainer: {
     alignItems: "center",
@@ -131,20 +161,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
     paddingHorizontal: 40,
-    paddingVertical: 16,
-    borderRadius: 12, // Rounded-xl for buttons too
-    marginBottom: 16,
+    paddingVertical: 18,
+    borderRadius: 16,
+    marginBottom: 20,
     width: "100%",
     justifyContent: "center",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 6,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 6,
   },
   watchButtonText: {
     color: "#246fb5",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "700",
     marginLeft: 12,
   },
@@ -153,16 +183,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255, 255, 255, 0.15)",
     paddingHorizontal: 40,
-    paddingVertical: 16,
-    borderRadius: 12, // Rounded-xl for buttons
+    paddingVertical: 18,
+    borderRadius: 16,
     width: "100%",
     justifyContent: "center",
-    borderWidth: 1.5,
-    borderColor: "rgba(255, 255, 255, 0.3)",
+    borderWidth: 2,
+    borderColor: "rgba(255, 255, 255, 0.4)",
   },
   aboutButtonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "700",
     marginLeft: 12,
   },
@@ -170,29 +200,46 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.15)",
     marginHorizontal: 32,
-    paddingVertical: 20,
-    borderRadius: 16,
-    marginTop: 20,
+    paddingVertical: 24,
+    borderRadius: 20,
+    marginTop: 10,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.2)",
   },
   statBox: {
     flex: 1,
     alignItems: "center",
   },
   statNumber: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: "bold",
-    marginBottom: 4,
+    marginBottom: 6,
     color: "#fff",
+    textShadowColor: "rgba(0, 0, 0, 0.1)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 2,
   },
   statLabel: {
-    fontSize: 14,
-    color: "rgba(255, 255, 255, 0.85)",
+    fontSize: 16,
+    color: "rgba(255, 255, 255, 0.9)",
+    fontWeight: "500",
   },
   statDivider: {
     width: 1,
     height: 40,
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+  },
+  footerContainer: {
+    alignItems: "center",
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
+  footerText: {
+    fontSize: 12,
+    color: "rgba(255, 255, 255, 0.6)",
+    textAlign: "center",
   },
 });
