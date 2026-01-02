@@ -53,7 +53,7 @@ export default function AboutScreen() {
             <View style={styles.iconContainer}>
               <HugeiconsIcon
                 icon={InformationCircleIcon}
-                size={60}
+                size={50}
                 color="#246fb5"
               />
             </View>
@@ -229,39 +229,6 @@ export default function AboutScreen() {
             </View>
           </View>
 
-          {/* Stats */}
-          {/* <View style={styles.statsSection}>
-            <ThemedText style={styles.statsTitle}>Why Choose TV6</ThemedText>
-
-            <View style={styles.statsGrid}>
-              <View style={styles.statCard}>
-                <HugeiconsIcon icon={Clock01Icon} size={32} color="#246fb5" />
-                <ThemedText style={styles.statNumber}>24/7</ThemedText>
-                <ThemedText style={styles.statLabel}>Non-Stop</ThemedText>
-              </View>
-
-              <View style={styles.statCard}>
-                <HugeiconsIcon
-                  icon={PlayCircleIcon}
-                  size={32}
-                  color="#246fb5"
-                />
-                <ThemedText style={styles.statNumber}>HD</ThemedText>
-                <ThemedText style={styles.statLabel}>Quality</ThemedText>
-              </View>
-
-              <View style={styles.statCard}>
-                <HugeiconsIcon
-                  icon={UserMultiple02Icon}
-                  size={32}
-                  color="#246fb5"
-                />
-                <ThemedText style={styles.statNumber}>For You</ThemedText>
-                <ThemedText style={styles.statLabel}>Community</ThemedText>
-              </View>
-            </View>
-          </View> */}
-
           {/* Final CTA */}
           <View style={styles.ctaSection}>
             <View style={styles.ctaIcon}>
@@ -315,8 +282,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   iconContainer: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",

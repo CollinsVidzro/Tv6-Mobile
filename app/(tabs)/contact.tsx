@@ -74,7 +74,7 @@ export default function ContactScreen() {
           {/* Header Icon */}
           <View style={styles.headerSection}>
             <View style={styles.iconContainer}>
-              <HugeiconsIcon icon={Call02Icon} size={60} color="#0a7ea4" />
+              <HugeiconsIcon icon={Call02Icon} size={50} color="#0a7ea4" />
             </View>
             <ThemedText style={styles.title}>Get In Touch</ThemedText>
             <ThemedText style={styles.subtitle}>
@@ -268,8 +268,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   iconContainer: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",
