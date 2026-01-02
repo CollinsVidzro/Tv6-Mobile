@@ -9,7 +9,7 @@ export enum Colors {
     secondary = '#222',
     tertiary = '#050404ff',
     text = '#fff',
-    theme = '#246fb5'
+    theme = '#0d3061'
 }
 
 export const gradientColors = ['rgba(0, 0, 0, 0.9)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)',]

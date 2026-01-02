@@ -34,7 +34,7 @@ export default function AboutScreen() {
   return (
     <View style={{ flex: 1 }}>
       {/* Custom Header */}
-      <View style={[styles.header, { backgroundColor: "#246fb5" }]}>
+      <View style={[styles.header, { backgroundColor: "#0d3061" }]}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
@@ -54,7 +54,7 @@ export default function AboutScreen() {
               <HugeiconsIcon
                 icon={InformationCircleIcon}
                 size={50}
-                color="#246fb5"
+                color="#0d3061"
               />
             </View>
             <ThemedText style={styles.subtitle}>
@@ -68,7 +68,7 @@ export default function AboutScreen() {
               <HugeiconsIcon
                 icon={FavouriteCircleIcon}
                 size={24}
-                color="#246fb5"
+                color="#0d3061"
               />
             </View>
             <ThemedText style={styles.heroText}>
@@ -86,7 +86,7 @@ export default function AboutScreen() {
           {/* What We Offer */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <HugeiconsIcon icon={StarIcon} size={28} color="#246fb5" />
+              <HugeiconsIcon icon={StarIcon} size={28} color="#0d3061" />
               <ThemedText style={styles.sectionTitle}>
                 What We Bring You
               </ThemedText>
@@ -95,7 +95,7 @@ export default function AboutScreen() {
             <View style={styles.offerGrid}>
               <View style={styles.offerCard}>
                 <View
-                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                  style={[styles.offerIcon, { backgroundColor: "#0d3061" }]}
                 >
                   <HugeiconsIcon icon={Film01Icon} size={28} color="#fff" />
                 </View>
@@ -107,7 +107,7 @@ export default function AboutScreen() {
 
               <View style={styles.offerCard}>
                 <View
-                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                  style={[styles.offerIcon, { backgroundColor: "#0d3061" }]}
                 >
                   <HugeiconsIcon
                     icon={MusicNote02Icon}
@@ -123,7 +123,7 @@ export default function AboutScreen() {
 
               <View style={styles.offerCard}>
                 <View
-                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                  style={[styles.offerIcon, { backgroundColor: "#0d3061" }]}
                 >
                   <HugeiconsIcon icon={VideoIcon} size={28} color="#fff" />
                 </View>
@@ -135,7 +135,7 @@ export default function AboutScreen() {
 
               <View style={styles.offerCard}>
                 <View
-                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                  style={[styles.offerIcon, { backgroundColor: "#0d3061" }]}
                 >
                   <HugeiconsIcon icon={LaughingIcon} size={28} color="#fff" />
                 </View>
@@ -147,7 +147,7 @@ export default function AboutScreen() {
 
               <View style={styles.offerCard}>
                 <View
-                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                  style={[styles.offerIcon, { backgroundColor: "#0d3061" }]}
                 >
                   <HugeiconsIcon icon={Mic01Icon} size={28} color="#fff" />
                 </View>
@@ -159,7 +159,7 @@ export default function AboutScreen() {
 
               <View style={styles.offerCard}>
                 <View
-                  style={[styles.offerIcon, { backgroundColor: "#246fb5" }]}
+                  style={[styles.offerIcon, { backgroundColor: "#0d3061" }]}
                 >
                   <HugeiconsIcon icon={ChatIcon} size={28} color="#fff" />
                 </View>
@@ -177,7 +177,7 @@ export default function AboutScreen() {
               <HugeiconsIcon
                 icon={FavouriteCircleIcon}
                 size={28}
-                color="#246fb5"
+                color="#0d3061"
               />
               <ThemedText style={styles.sectionTitle}>
                 Our Ghanaian Spirit
@@ -188,7 +188,7 @@ export default function AboutScreen() {
           <View style={styles.valuesContainer}>
             <View style={styles.valueItem}>
               <View style={[styles.valueIcon, { backgroundColor: "#f0f4ff" }]}>
-                <HugeiconsIcon icon={Home01Icon} size={24} color="#246fb5" />
+                <HugeiconsIcon icon={Home01Icon} size={24} color="#0d3061" />
               </View>
               <ThemedText style={styles.valueTitle}>Authentic</ThemedText>
               <ThemedText style={styles.valueDesc}>
@@ -201,7 +201,7 @@ export default function AboutScreen() {
                 <HugeiconsIcon
                   icon={UserMultiple02Icon}
                   size={24}
-                  color="#246fb5"
+                  color="#0d3061"
                 />
               </View>
               <ThemedText style={styles.valueTitle}>Community</ThemedText>
@@ -212,7 +212,7 @@ export default function AboutScreen() {
 
             <View style={styles.valueItem}>
               <View style={[styles.valueIcon, { backgroundColor: "#f0f4ff" }]}>
-                <HugeiconsIcon icon={Globe02Icon} size={24} color="#246fb5" />
+                <HugeiconsIcon icon={Globe02Icon} size={24} color="#0d3061" />
               </View>
               <ThemedText style={styles.valueTitle}>Cultural</ThemedText>
               <ThemedText style={styles.valueDesc}>
@@ -222,7 +222,7 @@ export default function AboutScreen() {
 
             <View style={styles.valueItem}>
               <View style={[styles.valueIcon, { backgroundColor: "#f0f4ff" }]}>
-                <HugeiconsIcon icon={Award01Icon} size={24} color="#246fb5" />
+                <HugeiconsIcon icon={Award01Icon} size={24} color="#0d3061" />
               </View>
               <ThemedText style={styles.valueTitle}>Quality</ThemedText>
               <ThemedText style={styles.valueDesc}>Premium content</ThemedText>
@@ -235,7 +235,7 @@ export default function AboutScreen() {
               <HugeiconsIcon
                 icon={FavouriteCircleIcon}
                 size={40}
-                color="#246fb5"
+                color="#0d3061"
               />
             </View>
             <ThemedText style={styles.ctaText}>
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
   heroConclusion: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#246fb5",
+    color: "#0d3061",
     fontStyle: "italic",
     textAlign: "center",
     lineHeight: 24,
@@ -480,7 +480,7 @@ const styles = StyleSheet.create({
   ctaText: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#246fb5",
+    color: "#0d3061",
     textAlign: "center",
     lineHeight: 24,
   },

@@ -15,7 +15,7 @@ import {
   Globe02Icon,
   ArrowLeft02Icon,
   Facebook01Icon,
-  TwitterIcon,
+  NewTwitterRectangleIcon,
   InstagramIcon,
   YoutubeIcon,
   ArrowRight01Icon,
@@ -53,7 +53,7 @@ export default function ContactScreen() {
   return (
     <View style={{ flex: 1 }}>
       {/* Custom Header */}
-      <View style={[styles.header, { backgroundColor: "#246fb5" }]}>
+      <View style={[styles.header, { backgroundColor: "#0d3061" }]}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
@@ -74,7 +74,7 @@ export default function ContactScreen() {
           {/* Header Icon */}
           <View style={styles.headerSection}>
             <View style={styles.iconContainer}>
-              <HugeiconsIcon icon={Call02Icon} size={50} color="#0a7ea4" />
+              <HugeiconsIcon icon={Call02Icon} size={50} color="#0d3061" />
             </View>
             <ThemedText style={styles.title}>Get In Touch</ThemedText>
             <ThemedText style={styles.subtitle}>
@@ -109,7 +109,7 @@ export default function ContactScreen() {
                 <HugeiconsIcon
                   icon={ArrowRight01Icon}
                   size={20}
-                  color="#0a7ea4"
+                  color="#0d3061"
                   style={styles.arrowIcon}
                 />
               </View>
@@ -135,7 +135,7 @@ export default function ContactScreen() {
                 <HugeiconsIcon
                   icon={ArrowRight01Icon}
                   size={20}
-                  color="#0a7ea4"
+                  color="#0d3061"
                   style={styles.arrowIcon}
                 />
               </View>
@@ -161,7 +161,7 @@ export default function ContactScreen() {
                 <HugeiconsIcon
                   icon={ArrowRight01Icon}
                   size={20}
-                  color="#0a7ea4"
+                  color="#0d3061"
                   style={styles.arrowIcon}
                 />
               </View>
@@ -196,7 +196,7 @@ export default function ContactScreen() {
                 onPress={() => handleSocialMedia("twitter")}
               >
                 <View style={styles.socialIconContainer}>
-                  <HugeiconsIcon icon={TwitterIcon} size={28} color="#1DA1F2" />
+                  <HugeiconsIcon icon={NewTwitterRectangleIcon} size={28} color="#1DA1F2" />
                 </View>
                 <ThemedText style={styles.socialText}>Twitter</ThemedText>
               </TouchableOpacity>
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 16,
-    backgroundColor: "#0a7ea4",
+    backgroundColor: "#0d3061",
   },
   contactContent: {
     flex: 1,

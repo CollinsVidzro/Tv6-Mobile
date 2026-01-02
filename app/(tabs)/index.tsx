@@ -24,17 +24,13 @@ export default function HomeScreen() {
         <View style={styles.logoContainer}>
           <View style={styles.logoCircle}>
             {/* Replace icon with TV6 logo */}
-            <Image 
-              source={require("@/assets/images/tv6-logo.png")}
+            <Image
+              source={require("@/assets/images/tv6-logo.jpeg")}
               style={styles.logoImage}
               resizeMode="contain"
             />
           </View>
         </View>
-        <ThemedText style={styles.title}>TV6 Ghana</ThemedText>
-        <ThemedText style={styles.subtitle}>
-          Discover the unseen
-        </ThemedText>
       </View>
 
       {/* Blue Background Section with Rounded-xl Top */}
@@ -46,11 +42,7 @@ export default function HomeScreen() {
             onPress={handleWatchLive}
             activeOpacity={0.8}
           >
-            <HugeiconsIcon 
-              icon={Tv01Icon} 
-              size={24} 
-              color="#0a7ea4" 
-            />
+            <HugeiconsIcon icon={Tv01Icon} size={24} color="#0d3061" />
             <ThemedText style={styles.watchButtonText}>
               Watch Live TV
             </ThemedText>
@@ -61,11 +53,7 @@ export default function HomeScreen() {
             onPress={handleAbout}
             activeOpacity={0.8}
           >
-            <HugeiconsIcon 
-              icon={InfoCircleIcon} 
-              size={24} 
-              color="#fff" 
-            />
+            <HugeiconsIcon icon={InfoCircleIcon} size={24} color="#fff" />
             <ThemedText style={styles.aboutButtonText}>About</ThemedText>
           </TouchableOpacity>
         </View>
@@ -81,13 +69,6 @@ export default function HomeScreen() {
             <ThemedText style={styles.statNumber}>24/7</ThemedText>
             <ThemedText style={styles.statLabel}>Always Live</ThemedText>
           </View>
-        </View>
-        
-        {/* Footer Text */}
-        <View style={styles.footerContainer}>
-          <ThemedText style={styles.footerText}>
-            © 2026 TV6 Ghana. All rights reserved.
-          </ThemedText>
         </View>
       </View>
     </ThemedView>
@@ -116,15 +97,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f0f4ff",
-    shadowColor: "#000",
+    // shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 12,
     elevation: 5,
   },
   logoImage: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
+    borderRadius: 65,
   },
   title: {
     fontSize: 36,
@@ -144,7 +126,7 @@ const styles = StyleSheet.create({
   },
   blueSection: {
     flex: 0.6,
-    backgroundColor: "#246fb5",
+    backgroundColor: "#0d3061",
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     paddingTop: 40,
@@ -173,7 +155,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   watchButtonText: {
-    color: "#246fb5",
+    color: "#0d3061",
     fontSize: 20,
     fontWeight: "700",
     marginLeft: 12,

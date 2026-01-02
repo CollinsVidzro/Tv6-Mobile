@@ -39,7 +39,7 @@ export default function VideoPlayerScreen() {
   return (
     <View style={{ flex: 1 }}>
       {/* Custom Header */}
-      <View style={[styles.header, { backgroundColor: "#246fb5" }]}>
+      <View style={[styles.header, { backgroundColor: "#0d3061" }]}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
@@ -53,7 +53,7 @@ export default function VideoPlayerScreen() {
 
       <StatusBar 
         style="light" 
-        backgroundColor="#246fb5"
+        backgroundColor="#0d3061"
       />
 
       <View style={{ flex: 1 }}>

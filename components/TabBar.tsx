@@ -128,7 +128,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               style={[
                 styles.label,
                 { 
-                  color: isFocused ? '#0891b2' : '#737373',
+                  color: isFocused ? '#0d3061' : '#737373',
                   opacity: translateValue.interpolate({
                     inputRange: [
                       (index - 1) * TAB_WIDTH,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     left: TAB_WIDTH * 0.15,
     width: TAB_WIDTH * 0.7,
     height: 3,
-    backgroundColor: '#0891b2',
+    backgroundColor: '#0d3061',
     borderRadius: 3,
   },
   tabButton: {
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     width: 40, // Smaller background
     height: 40, // Smaller background
     borderRadius: 20,
-    backgroundColor: '#0891b2',
+    backgroundColor: '#0d3061',
     alignItems: 'center',
     justifyContent: 'center',
   },
