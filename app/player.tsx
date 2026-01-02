@@ -47,7 +47,7 @@ export default function VideoPlayerScreen() {
         >
           <HugeiconsIcon icon={ArrowLeft02Icon} size={24} color="#fff" />
         </TouchableOpacity>
-        <ThemedText style={styles.headerTitle}>TV6 Ghana</ThemedText>
+        <ThemedText style={styles.headerTitle}>TV6 Live</ThemedText>
         <View style={{ width: 40 }} />
       </View>
 
