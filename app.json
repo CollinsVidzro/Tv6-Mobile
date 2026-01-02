@@ -19,7 +19,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.collinsvidzro.tv6"
     },
     "web": {
       "output": "static",
@@ -46,11 +47,18 @@
           "supportsPictureInPicture": true
         }
       ],
-      "expo-screen-orientation"
+      "expo-screen-orientation",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "a0772e85-8b9f-4040-9d14-bc32ff1f47fd"
+      }
     }
   }
 }
