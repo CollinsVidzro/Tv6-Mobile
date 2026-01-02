@@ -51,7 +51,8 @@
         {
           "microphonePermission": "Allow TV6 Ghana to access your microphone."
         }
-      ]
+      ],
+      "expo-screen-orientation"
     ],
     "experiments": {
       "typedRoutes": true,
