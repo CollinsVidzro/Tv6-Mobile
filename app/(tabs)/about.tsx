@@ -42,7 +42,7 @@ export default function AboutScreen() {
         >
           <HugeiconsIcon icon={ArrowLeft02Icon} size={24} color="#fff" />
         </TouchableOpacity>
-        <ThemedText style={styles.headerTitle}>About TV6 Ghana</ThemedText>
+        <ThemedText style={styles.headerTitle}>About TV6</ThemedText>
         <View style={{ width: 40 }} />
       </View>
 
