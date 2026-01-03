@@ -14,12 +14,12 @@ import {
   MusicNote02Icon,
   Film01Icon,
   Mic01Icon,
-  UserMultiple02Icon,
+  // UserMultiple02Icon,
   FavouriteCircleIcon,
   // Clock01Icon,
-  Globe02Icon,
-  Award01Icon,
-  Home01Icon,
+  // Globe02Icon,
+  // Award01Icon,
+  // Home01Icon,
   StarIcon,
   VideoIcon,
   LaughingIcon,
@@ -172,7 +172,7 @@ export default function AboutScreen() {
           </View>
 
           {/* Our Values */}
-          <View style={styles.section}>
+          {/* <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <HugeiconsIcon
                 icon={FavouriteCircleIcon}
@@ -227,7 +227,7 @@ export default function AboutScreen() {
               <ThemedText style={styles.valueTitle}>Quality</ThemedText>
               <ThemedText style={styles.valueDesc}>Premium content</ThemedText>
             </View>
-          </View>
+          </View> */}
 
           {/* Final CTA */}
           <View style={styles.ctaSection}>
